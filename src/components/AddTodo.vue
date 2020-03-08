@@ -4,7 +4,7 @@
       <input
         v-model="title"
         type="text"
-        id="form1"
+        id="toDoInput"
         class="form-control"
         placeholder="What do you need to do today?"
       />
@@ -32,6 +32,7 @@ export default {
       };
       // Send up to parent
       this.$emit("add-todo", newTodo);
+      this.title=""
     }
   }
 };
