@@ -2,7 +2,12 @@
   <li v-bind:class="{'completed': todo.completed}">
     <div class="form-check">
       <label class="form-check-label">
-        <input class="checkbox" type="checkbox" :checked="todo.completed" v-on:change="markComplete"/>
+        <input
+          class="checkbox"
+          type="checkbox"
+          :checked="todo.completed"
+          v-on:change="markComplete"
+        />
         {{todo.title}}
         <i class="input-helper"></i>
       </label>
@@ -14,11 +19,11 @@
 <script>
 export default {
   name: "TodoItem",
-  props: ["todo"], 
+  props: ["todo"],
   methods: {
-      markComplete(){
-          this.todo.completed = !this.todo.completed
-      }
+    markComplete() {
+      this.todo.completed = !this.todo.completed;
+    }
   }
 };
 </script>

@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png" height="100px" class="mb-3"/> -->
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"></Todos>
+    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" v-on:add-todo="addTodo"></Todos>
   </div>
 </template>
 
@@ -37,6 +36,10 @@ export default {
   methods: {
     deleteTodo(id) {
       this.todos = this.todos.filter(todo => todo.id != id);
+    },
+    addTodo(newTodo) {
+      console.log("hello");
+      this.todos = [...this.todos, newTodo];
     }
   }
 };
@@ -51,6 +54,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 body {
   background: url("./assets/blue-snow.png");
 }
@@ -75,13 +79,6 @@ body {
 
 .padding {
   padding: 5rem;
-}
-
-.card {
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -ms-box-shadow: none;
 }
 
 .pl-3,
