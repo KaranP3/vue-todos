@@ -14,23 +14,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: "Todo one",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "Todo two",
-          completed: true
-        },
-        {
-          id: 3,
-          title: "Todo three",
-          completed: false
-        }
-      ]
+      todos: []
     };
   },
   methods: {
@@ -40,6 +24,20 @@ export default {
     addTodo(newTodo) {
       console.log("hello");
       this.todos = [...this.todos, newTodo];
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("todos")) {
+      this.todos = JSON.parse(localStorage.getItem("todos"));
+    }
+  },
+  watch: {
+    todos: {
+      handler() {
+        console.log("Todos changed!");
+        localStorage.setItem("todos", JSON.stringify(this.todos));
+      },
+      deep: true
     }
   }
 };
