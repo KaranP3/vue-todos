@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row container d-flex justify-content-center">
-      <div class="col-lg-12">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-10">
         <div class="card px-3 z-depth-2">
           <div class="card-body">
             <h4 class="card-title">Tasks</h4>
