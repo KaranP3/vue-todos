@@ -12,20 +12,25 @@
         <i class="input-helper"></i>
       </label>
     </div>
-    <i @click="$emit('del-todo', todo.id)" class="remove icon-trash" style="font-size: smaller;"></i>
+    <i @click="onClick" class="remove icon-trash" style="font-size: smaller;"></i>
   </li>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "TodoItem",
   props: ["todo"],
   methods: {
+    ...mapActions(["deleteTodo"]),
+    ...mapActions(["markCompleted"]),
+    onClick() {
+      this.deleteTodo(this.todo.id);
+    },
     markComplete() {
-      this.todo.completed = !this.todo.completed;
+      this.markCompleted(this.todo.id);
     }
   }
 };
 </script>
-
-<style lang="stylus" scoped></style>

@@ -2,17 +2,17 @@
   <div class="container">
     <div class="row container d-flex justify-content-center">
       <div class="col-12 col-sm-12 col-md-12 col-lg-10">
-        <div class="card px-3 z-depth-2">
+        <div class="card px-3 z-depth-3">
           <div class="card-body">
             <h4 class="card-title">Tasks</h4>
-            <AddTodo v-on:add-todo="addTodo"></AddTodo>
+            <AddTodo></AddTodo>
             <div class="list-wrapper">
               <ul
                 v-bind:key="todo.id"
                 v-for="todo in todos"
                 class="d-flex flex-column-reverse todo-list"
               >
-                <TodoItem v-bind:todo="todo" v-on:del-todo="$emit('del-todo', todo.id)"></TodoItem>
+                <TodoItem v-bind:todo="todo"></TodoItem>
               </ul>
             </div>
           </div>
@@ -32,14 +32,6 @@ export default {
     AddTodo,
     TodoItem
   },
-  props: ["todos"],
-  methods: {
-    addTodo(newTodo) {
-      this.$emit("add-todo", newTodo);
-    }
-  }
+  props: ["todos"]
 };
 </script>
-
-<style scoped>
-</style>
