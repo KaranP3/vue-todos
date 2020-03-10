@@ -1,5 +1,5 @@
 <template>
-  <form @submit="addTodo">
+  <form @submit="onSubmit">
     <div class="md-form add-items d-flex">
       <input
         v-model="title"
@@ -15,6 +15,7 @@
 
 <script>
 import { v4 as uuidv4 } from "uuid";
+import { mapActions } from "vuex";
 
 export default {
   name: "AddTodo",
@@ -24,15 +25,18 @@ export default {
     };
   },
   methods: {
-    addTodo() {
+    ...mapActions(["addTodo"]),
+    onSubmit(e) {
+      e.preventDefault();
+
       const newTodo = {
         id: uuidv4(),
         title: this.title,
         completed: false
       };
-      // Send up to parent
-      this.$emit("add-todo", newTodo);
-      this.title=""
+
+      this.addTodo(newTodo);
+      this.title = "";
     }
   }
 };

@@ -1,14 +1,20 @@
 <template>
   <div id="app">
-    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo" v-on:add-todo="addTodo"></Todos>
+    <Todos v-bind:todos="allTodos"></Todos>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
 import Todos from "./components/Todos";
 
 export default {
   name: "App",
+  computed: mapGetters(["allTodos"]),
+  created() {
+    this.fetchTodos();
+  },
   components: {
     Todos
   },
@@ -18,27 +24,7 @@ export default {
     };
   },
   methods: {
-    deleteTodo(id) {
-      this.todos = this.todos.filter(todo => todo.id != id);
-    },
-    addTodo(newTodo) {
-      console.log("hello");
-      this.todos = [...this.todos, newTodo];
-    }
-  },
-  mounted() {
-    if (localStorage.getItem("todos")) {
-      this.todos = JSON.parse(localStorage.getItem("todos"));
-    }
-  },
-  watch: {
-    todos: {
-      handler() {
-        console.log("Todos changed!");
-        localStorage.setItem("todos", JSON.stringify(this.todos));
-      },
-      deep: true
-    }
+    ...mapActions(["fetchTodos"])
   }
 };
 </script>
